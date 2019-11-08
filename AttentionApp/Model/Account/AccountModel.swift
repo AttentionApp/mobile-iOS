@@ -6,6 +6,7 @@
 //  Copyright © 2019 Ricardo Guevara. All rights reserved.
 //
 
+
 struct Account: Codable {
   //var id: Int
   var email: String
