@@ -14,7 +14,7 @@ struct RequestAPI {
   static func call(_ path: String, method: HTTPMethod, parameters: Parameters?, completion: @escaping (Result<JSON>) -> Void) {
     let baseURL = URL(string: "https://attention-api.herokuapp.com/api/")
     let url = baseURL!.appendingPathComponent(path)
-    let accessToken = UserDefaults.standard.string(forKey: "access_token") ?? ""
+    let accessToken = UserDefaults.standard.string(forKey: "token") ?? ""
     let headers: HTTPHeaders = ["Authorization": "Bearer \(accessToken)"]
 
     Alamofire.request(url, method: method, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { res in

@@ -9,5 +9,5 @@
 import SwiftUI
 
 final class GlobalState: ObservableObject {
-  @Published var accessToken: String = UserDefaults.standard.string(forKey: "access_token") ?? ""
+  @Published var accessToken: String = UserDefaults.standard.string(forKey: "token") ?? ""
 }

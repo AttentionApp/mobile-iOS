@@ -20,6 +20,7 @@
 		6D1F80FD236FF67300902844 /* AccountAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1F80FC236FF67300902844 /* AccountAPI.swift */; };
 		6D1F80FF236FF72300902844 /* AccountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1F80FE236FF72300902844 /* AccountModel.swift */; };
 		6D1F8101236FF87400902844 /* GlobalState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1F8100236FF87400902844 /* GlobalState.swift */; };
+		6D2CF68A2375039500C44788 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2CF6892375039500C44788 /* RegisterView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		6D1F80FC236FF67300902844 /* AccountAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountAPI.swift; sourceTree = "<group>"; };
 		6D1F80FE236FF72300902844 /* AccountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountModel.swift; sourceTree = "<group>"; };
 		6D1F8100236FF87400902844 /* GlobalState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalState.swift; sourceTree = "<group>"; };
+		6D2CF6892375039500C44788 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +97,7 @@
 		6D1F80F3236FF01000902844 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				6D2CF6882375037600C44788 /* Register */,
 				6D1F80F6236FF0CB00902844 /* LogIn */,
 			);
 			path = View;
@@ -132,6 +135,14 @@
 				6D1F80FE236FF72300902844 /* AccountModel.swift */,
 			);
 			path = Account;
+			sourceTree = "<group>";
+		};
+		6D2CF6882375037600C44788 /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				6D2CF6892375039500C44788 /* RegisterView.swift */,
+			);
+			path = Register;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -213,6 +224,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D2CF68A2375039500C44788 /* RegisterView.swift in Sources */,
 				6D1F80FD236FF67300902844 /* AccountAPI.swift in Sources */,
 				6D1F80DC236FE6F400902844 /* AttentionApp.xcdatamodeld in Sources */,
 				6D1F80FF236FF72300902844 /* AccountModel.swift in Sources */,
