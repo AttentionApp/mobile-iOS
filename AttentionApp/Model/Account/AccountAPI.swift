@@ -21,6 +21,7 @@ struct AccountAPI {
         }
       case let .failure(error):
         completion(.failure(error))
+        
       }
     }
   }
