@@ -15,6 +15,7 @@ struct LogInView: View {
     @EnvironmentObject private var globalState: GlobalState
     @Environment(\.presentationMode) private var presentation: Binding<PresentationMode>
     
+    @State private var showLogin = false
     @State private var showModal = false
     @State private var email: String = ""
     @State private var password: String = ""
@@ -50,8 +51,25 @@ struct LogInView: View {
             Spacer()
                 .frame(height: 50)
             Button(action: {
-                print("button tapped!")
-            }) {
+                            let parameters: Parameters = [
+                                "email": self.email,
+                                "password": self.password,
+                            ]
+                AccountAPI.login(parameters) { res in
+                            switch res {
+                            case .success:
+                              if let json = res.value, let accessToken = json["token"].string {
+                                self.globalState.accessToken = accessToken
+                                //print(accessToken)
+                              }
+            //                  self.stateReset()
+                              self.presentation.wrappedValue.dismiss()
+                            case let .failure(error):
+                              print(error)
+                            }
+                          }
+                self.showLogin = true
+                        }) {
                 HStack {
                     
                     Text(stringIniciarSesion)
@@ -64,7 +82,9 @@ struct LogInView: View {
                 .background(Color.blue)
                 .cornerRadius(40)
             }.padding(20)
-           
+           .sheet(isPresented: $showLogin, content:{
+                   HomeView().environmentObject(self.globalState)
+           })
             
             Button(action: {
                 self.showModal = true
@@ -87,16 +107,13 @@ struct LogInView: View {
                 
                 
             }.padding()
-            
+            .sheet(isPresented: $showModal, content:{
+                    RegisterView().environmentObject(self.globalState)
+            })
            
             
         }
         .padding(48)
-        .sheet(isPresented: $showModal, content: {
-          RegisterView().environmentObject(self.globalState)
-        })
-        
-        
         
     }
 }
