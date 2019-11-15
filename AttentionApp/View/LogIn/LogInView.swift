@@ -19,6 +19,7 @@ struct LogInView: View {
     @State private var showModal = false
     @State private var email: String = ""
     @State private var password: String = ""
+    @State private var showingAlert = false
     
     let stringIniciarSesion:String = "Iniciar Sesión"
     let stringRegistrarse:String = "Crear una cuenta"
@@ -45,12 +46,13 @@ struct LogInView: View {
                 .frame(height: 50)
             
             TextField("Email", text: $email)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .textFieldStyle(RoundedBorderTextFieldStyle()).keyboardType(.emailAddress).autocapitalization(.none)
             SecureField("Password", text: $password)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .textFieldStyle(RoundedBorderTextFieldStyle()).autocapitalization(.none)
             Spacer()
                 .frame(height: 50)
             Button(action: {
+
                             let parameters: Parameters = [
                                 "email": self.email,
                                 "password": self.password,
@@ -70,12 +72,14 @@ struct LogInView: View {
                           }
                 self.showLogin = true
                         }) {
+
                 HStack {
                     
                     Text(stringIniciarSesion)
                         .fontWeight(.semibold)
                         .font(.callout)
                 }
+               
                 .frame(minWidth: 0, maxWidth: .infinity)
                 .padding()
                 .foregroundColor(.black)
@@ -85,6 +89,12 @@ struct LogInView: View {
            .sheet(isPresented: $showLogin, content:{
                    HomeView().environmentObject(self.globalState)
            })
+
+            /*.alert(isPresented: $showingAlert) {
+                                Alert(title: Text("Error"), message: Text("Email o contraseña inválidos"), dismissButton: .default(Text("Ok")))
+                           }*/
+            
+
             
             Button(action: {
                 self.showModal = true
@@ -95,15 +105,15 @@ struct LogInView: View {
                         .fontWeight(.bold)
                         .font(.callout)
                 }
-       
+                    
                 .frame(minWidth: 0, maxWidth: .infinity)
                 .foregroundColor(.blue)
                 .background(Color.white)
                 .padding()
-               .overlay(
-                RoundedRectangle(cornerRadius: 40)
-                    .stroke(Color.blue, lineWidth: 8)
-                 .cornerRadius(40))
+                .overlay(
+                    RoundedRectangle(cornerRadius: 40)
+                        .stroke(Color.blue, lineWidth: 8)
+                        .cornerRadius(40))
                 
                 
             }.padding()
@@ -114,6 +124,7 @@ struct LogInView: View {
             
         }
         .padding(48)
+
         
     }
 }
