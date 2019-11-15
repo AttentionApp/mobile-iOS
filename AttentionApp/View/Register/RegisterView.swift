@@ -22,9 +22,6 @@ struct RegisterView: View {
     let stringCrearCuenta : String = "Crear cuenta"
     
     func stateReset() {
-        
-        
-        
         email = ""
         firstName = ""
         lastName = ""
@@ -65,7 +62,6 @@ struct RegisterView: View {
                 case .success:
                   if let json = res.value, let accessToken = json["token"].string {
                     self.globalState.accessToken = accessToken
-                    print(accessToken)
                   }
 //                  self.stateReset()
                   self.presentation.wrappedValue.dismiss()
