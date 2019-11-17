@@ -7,20 +7,20 @@
 //
 
 import SwiftUI
+import Combine
 
-struct NurseRow: View{
-    var nurse : NurseModel
-    
-    var body: some View{
-        Text(nurse.first_name)
-    }
-}
+//struct NurseRow: View{
+//    var nurse : NurseModel
+//
+//    var body: some View{
+//        Text(nurse.first_name)
+//    }
+//}
 
 struct NurseListView: View {
     
     @EnvironmentObject private var globalState: GlobalState
     @Environment(\.presentationMode) private var presentation: Binding<PresentationMode>
-    
     
     @State var nurseList: [NurseModel] = []
     
@@ -28,14 +28,20 @@ struct NurseListView: View {
     var body: some View {
         
         NavigationView {
-            
-            VStack{
                 List(self.nurseList){ nurse in
-                    Image("ic_nurse_black_24dp")
-                    Text(nurse.short_name)                    
+                    
+                    NavigationLink(destination: NurseProfileView(nurseModel:nurse)){
+                            Image("ic_nurse_black_24dp")
+                                .resizable()
+                                .frame(width: 50, height: 50)
+                            Text(nurse.short_name)
+                    }
+                    
+//                    ImageViewWidget(imageUrl: "http://www.trabajadores.cu/wp-content/uploads/2018/05/Anabel-Vald%C3%A9s-750x498.jpg")
+                    
+
                 }
-            }
-            .navigationBarTitle(Text("Lista de Enfermeras"))
+                .navigationBarTitle(Text("Lista de Enfermeras"))
         }.onAppear(){
             NurseAPI.viewAll(){res in
                 switch res {
@@ -47,10 +53,8 @@ struct NurseListView: View {
                                 var nurseModel = NurseModel()
                                 if var shortName = item["short_name"].string{
                                     nurseModel.short_name  = shortName
-                                    //                                                    print(nurseModel.short_name)
                                     if var imageURL = item["thumbnail_image"].string{
                                         nurseModel.thumbnail_image  = imageURL
-                                        //                                                        print(nurseModel.thumbnail_image)
                                     }
                                     if var lastName = item["last_name"].string{
                                         nurseModel.last_name = lastName
@@ -62,8 +66,6 @@ struct NurseListView: View {
                                 self.nurseList.append(nurseModel)
                                 
                             }
-                            
-                            print(self.nurseList)
                         }
                         //                                        let arrayName = json["rows"].arrayValue.map{
                         //                                             $0["short_name"].stringValue
@@ -83,12 +85,47 @@ struct NurseListView: View {
         }
     }
 }
+
+class ImageLoader: ObservableObject{
+    var didChange = PassthroughSubject<Data, Never>()
+    
+    var data = Data(){
+        didSet{
+            didChange.send(data)
+        }
+    }
+    
+    init(imageUrl: String){
+        guard let url = URL(string: imageUrl) else { return }
+        URLSession.shared.dataTask(with: url){(data, response, error) in
+            guard let data = data else {return }
+            DispatchQueue.main.async{
+                self.data = data
+            }
+            
+        }.resume()
+    }
+}
+
+struct ImageViewWidget: View{
+    
+    @ObservedObject var imageLoader: ImageLoader
+    
+    init(imageUrl: String){
+        imageLoader = ImageLoader(imageUrl: imageUrl)
+    }
+    
+    var body: some View{
+        Image(uiImage: (imageLoader.data.count == 0) ? UIImage(named: "ic_nurse_black_24dp")! : UIImage(data: imageLoader.data)!)
+        .resizable()
+        .frame(width: 50, height: 50)
+        
+    }
+}
+
+
 struct NurseListView_Previews: PreviewProvider {
     static var previews: some View {
         NurseListView()
     }
-}
-
-func example()  {
-    
 }

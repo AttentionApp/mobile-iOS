@@ -16,6 +16,10 @@ struct HomeView: View {
                     Image("ic_nurse_black_24dp")
                     Text("Enfermeras")
                 }
+                Text("Mis reservas")
+                .tabItem(){
+                    Text("Mis reservas")
+                }
                 UserProfileView().tabItem(){
                     Text("Mi cuenta")
                 }

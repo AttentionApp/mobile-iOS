@@ -20,7 +20,7 @@ struct ContractNurse: View {
     var body: some View {
         VStack() {
             HStack {
-              Text("Crear cuenta")
+              Text("Seleccionar horario")
               .bold()
               .font(.largeTitle)
             }

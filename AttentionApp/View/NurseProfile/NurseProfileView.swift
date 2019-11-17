@@ -6,15 +6,18 @@
 //  Copyright © 2019 Ricardo Guevara. All rights reserved.
 //
 
+import Alamofire
 import SwiftUI
+import SwiftyJSON
+import UIKit
 
 struct NurseProfileView: View {
-    
-    //var nurse : NurseModel
-    
+        
     let stringContratar:String = "Contratar"
     @EnvironmentObject private var globalState: GlobalState
     @Environment(\.presentationMode) private var presentation: Binding<PresentationMode>
+    
+    var nurseModel: NurseModel
     
     var body: some View {
         NavigationView {
@@ -24,11 +27,11 @@ struct NurseProfileView: View {
             }
             HStack {
               Text("Nombre: ").bold()
-               // Text("\(nurse.first_name)")
+                Text("\(nurseModel.first_name)")
             }
             HStack {
               Text("Apellido: ").bold()
-              //  Text("\(nurse.last_name)")
+              Text("\(nurseModel.last_name)")
             }
             Spacer()
             Button(action: {}) {
@@ -41,13 +44,14 @@ struct NurseProfileView: View {
             .foregroundColor(Color.white)
             .cornerRadius(10)
           }
-          .navigationBarTitle("Perfil de ")
+          .navigationBarTitle("Perfil de \(nurseModel.short_name)")
+        }.onAppear(){
         }
     }
 }
 struct NurseProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        NurseProfileView()
+        NurseProfileView(nurseModel: NurseModel())
     }
 }
 
