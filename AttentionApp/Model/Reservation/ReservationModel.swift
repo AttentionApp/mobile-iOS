@@ -17,8 +17,8 @@ struct ReservationModel : Identifiable, Codable {
     var start_date: String
     
     init(){
-        idNurse = nil
-        start_date = "No URL"
+        idNurse = 0
+        start_date = "No date"
     }
     
 }
