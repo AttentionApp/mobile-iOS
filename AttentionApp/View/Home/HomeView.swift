@@ -10,20 +10,20 @@ import SwiftUI
 
 struct HomeView: View {
     var body: some View {
-        NavigationView{
             TabView{
                 NurseListView().tabItem(){
                     Image("ic_nurse_black_24dp")
                     Text("Enfermeras")
                 }
                 ReservationsView().tabItem(){
+                    Image(systemName: "square.and.pencil")
                     Text("Mis reservas")
                 }
                 UserProfileView().tabItem(){
+                    Image(systemName: "person.fill")
                     Text("Mi cuenta")
                 }
             }
-        }
     }
 }
 

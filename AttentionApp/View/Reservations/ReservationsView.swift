@@ -37,7 +37,6 @@ struct ReservationsView: View {
                                 if var startDate = item["start_date"].string{
                                     
                                     let isoDate = startDate
-//                                    print(isoDate)
                                     let common = Date()
                                     let dateFormatter = DateFormatter()
                                     dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
