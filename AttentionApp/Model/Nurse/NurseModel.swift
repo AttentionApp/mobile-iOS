@@ -11,6 +11,7 @@ import SwiftUI
 struct NurseModel : Identifiable, Codable {
     
     let id = UUID()
+    var idnurse: Int
     var first_name: String
     var last_name: String
     var short_name : String
@@ -34,8 +35,7 @@ struct NurseModel : Identifiable, Codable {
         thumbnail_image = "No URL"
         first_name = "No name"
         last_name = "No last name"
-        
-        
+        idnurse = 0
     }
     
 }

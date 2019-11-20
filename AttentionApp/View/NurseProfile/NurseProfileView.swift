@@ -17,6 +17,8 @@ struct NurseProfileView: View {
     @EnvironmentObject private var globalState: GlobalState
     @Environment(\.presentationMode) private var presentation: Binding<PresentationMode>
     
+    @State var showView = false
+    
     var nurseModel: NurseModel
     
     var body: some View {
@@ -34,18 +36,21 @@ struct NurseProfileView: View {
               Text("\(nurseModel.last_name)")
             }
             Spacer()
-            Button(action: {}) {
-                Text(stringContratar)
-              }
-            .scaledToFill()
-              .frame(minWidth: 100, idealWidth: 200, maxWidth: 350)
-            .padding()
-            .background(Color.blue)
-            .foregroundColor(Color.white)
-            .cornerRadius(10)
+            
+            NavigationLink(destination: ContractNurse(), isActive: $showView){
+                Button(action: {self.showView = true}) {
+                    Text(stringContratar)
+                }
+                .scaledToFill()
+                  .frame(minWidth: 100, idealWidth: 200, maxWidth: 350)
+                .padding()
+                .background(Color.blue)
+                .foregroundColor(Color.white)
+                .cornerRadius(10)
+            }
+            
           }
           .navigationBarTitle("Perfil de \(nurseModel.short_name)")
-        }.onAppear(){
         }
     }
 }

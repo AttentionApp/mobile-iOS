@@ -8,6 +8,7 @@
 
 import SwiftUI
 import Combine
+import Foundation
 
 //struct NurseRow: View{
 //    var nurse : NurseModel
@@ -23,26 +24,54 @@ struct NurseListView: View {
     @Environment(\.presentationMode) private var presentation: Binding<PresentationMode>
     
     @State var nurseList: [NurseModel] = []
+    @State var imageLoader : ImageLoader?
     
+    
+    class ImageLoader: ObservableObject{
+        
+        @Published var dataIsValid = false
+        var data:Data?
+        
+        init(urlString:String){
+            guard let url = URL(string: urlString) else { return }
+            let task = URLSession.shared.dataTask(with : url){ data, resonse, error in
+                guard let data = data else { return }
+                DispatchQueue.main.async{
+                    self.dataIsValid = true
+                    self.data = data
+                }
+            }
+            task.resume()
+        }
+    }
+
+    func imageFromData(_ data:Data) -> UIImage {
+        UIImage(data: data) ?? UIImage()
+    }
     
     var body: some View {
-        
+              
         NavigationView {
                 List(self.nurseList){ nurse in
-                    
-                    NavigationLink(destination: NurseProfileView(nurseModel:nurse)){
+                    NavigationLink(destination: NurseProfileView(nurseModel: nurse)){
+//                        Profe sigue sin funcionar la imagen
+                        
+                        
+//                        imageLoader = ImageLoader(urlString: nurse.thumbnail_image)
+//                        Image(uiImage: imageLoader.dataIsValid ? imageFromData(imageLoader.data!) : UIImage())
+//                        .resizable()
+//                        .aspectRatio(contentMode: .fit)
+//                        .frame(width:50, height:50)
+                        
                             Image("ic_nurse_black_24dp")
                                 .resizable()
                                 .frame(width: 50, height: 50)
                             Text(nurse.short_name)
                     }
-                    
-//                    ImageViewWidget(imageUrl: "http://www.trabajadores.cu/wp-content/uploads/2018/05/Anabel-Vald%C3%A9s-750x498.jpg")
-                    
+                }.navigationBarTitle(Text("Lista de Enfermeras"))
 
-                }
-                .navigationBarTitle(Text("Lista de Enfermeras"))
-        }.onAppear(){
+        }
+        .onAppear(){
             NurseAPI.viewAll(){res in
                 switch res {
                 case .success:
@@ -61,6 +90,9 @@ struct NurseListView: View {
                                     }
                                     if var firstName = item["first_name"].string{
                                         nurseModel.first_name = firstName
+                                    }
+                                    if var idNurse = item["idnurse"].int{
+                                        nurseModel.idnurse = idNurse
                                     }
                                 }
                                 self.nurseList.append(nurseModel)
@@ -85,44 +117,6 @@ struct NurseListView: View {
         }
     }
 }
-
-class ImageLoader: ObservableObject{
-    var didChange = PassthroughSubject<Data, Never>()
-    
-    var data = Data(){
-        didSet{
-            didChange.send(data)
-        }
-    }
-    
-    init(imageUrl: String){
-        guard let url = URL(string: imageUrl) else { return }
-        URLSession.shared.dataTask(with: url){(data, response, error) in
-            guard let data = data else {return }
-            DispatchQueue.main.async{
-                self.data = data
-            }
-            
-        }.resume()
-    }
-}
-
-struct ImageViewWidget: View{
-    
-    @ObservedObject var imageLoader: ImageLoader
-    
-    init(imageUrl: String){
-        imageLoader = ImageLoader(imageUrl: imageUrl)
-    }
-    
-    var body: some View{
-        Image(uiImage: (imageLoader.data.count == 0) ? UIImage(named: "ic_nurse_black_24dp")! : UIImage(data: imageLoader.data)!)
-        .resizable()
-        .frame(width: 50, height: 50)
-        
-    }
-}
-
 
 struct NurseListView_Previews: PreviewProvider {
     static var previews: some View {
