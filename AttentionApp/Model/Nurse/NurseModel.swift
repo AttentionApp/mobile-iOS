@@ -36,6 +36,7 @@ struct NurseModel : Identifiable, Codable {
         first_name = "No name"
         last_name = "No last name"
         idnurse = 0
+
     }
     
 }

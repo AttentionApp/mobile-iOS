@@ -15,6 +15,7 @@ struct UserProfileView: View {
     @EnvironmentObject private var globalState: GlobalState
     
     @State var userModel: UserModel?
+
     
     var body: some View {
         NavigationView {
@@ -53,6 +54,7 @@ struct UserProfileView: View {
                         case let .failure(error):
                               print(error)
                 }
+
             }
         }
     }

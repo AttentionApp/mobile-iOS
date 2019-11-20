@@ -19,6 +19,7 @@ struct LogInView: View {
     @State private var showModal = false
     @State private var email: String = ""
     @State private var password: String = ""
+    @State private var showingAlert = false
     
     let stringIniciarSesion:String = "Iniciar Sesión"
     let stringRegistrarse:String = "Crear una cuenta"
@@ -43,8 +44,7 @@ struct LogInView: View {
                 Text("Por favor, ingrese su email y contraseña")
                     .font(.subheadline)
                 Spacer()
-                    .frame(height: 50)
-                
+                    .frame(height: 50)               
                 TextField("Email", text: $email)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                 SecureField("Password", text: $password)
