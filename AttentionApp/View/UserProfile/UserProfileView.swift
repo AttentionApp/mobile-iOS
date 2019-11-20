@@ -7,8 +7,14 @@
 //
 
 import SwiftUI
+import Alamofire
+import SwiftyJSON
 
 struct UserProfileView: View {
+    
+    @EnvironmentObject private var globalState: GlobalState
+    @Environment(\.presentationMode) private var presentation: Binding<PresentationMode>
+    
     var body: some View {
         NavigationView {
           VStack(alignment: .center) {
@@ -32,6 +38,13 @@ struct UserProfileView: View {
           .navigationBarTitle("Acerca de ")
         }.onAppear(){
             
+            let parameters: Parameters = [
+                "token": globalState.accessToken
+            ]
+            
+            UserAPI.data(parameters){
+                
+            }
         }
     }
 }

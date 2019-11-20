@@ -88,7 +88,3 @@ struct NurseListView_Previews: PreviewProvider {
         NurseListView()
     }
 }
-
-func example()  {
-    
-}

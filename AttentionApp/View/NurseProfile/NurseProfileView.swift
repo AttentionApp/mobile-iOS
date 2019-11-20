@@ -7,6 +7,8 @@
 //
 
 import SwiftUI
+import Alamofire
+import SwiftyJSON
 
 struct NurseProfileView: View {
     

@@ -25,8 +25,8 @@ struct NurseAPI {
     }
     
     
-    static func detailsNurse(completion: @escaping (Result<JSON>)-> Void){
-        RequestAPI.get("v1/nurses/{id}", method: .get){ res in
+    static func detailsNurse(_ parameters: Parameters?,completion: @escaping (Result<JSON>)-> Void){
+        RequestAPI.call("v1/nurses/{id}", method: .get, parameters: parameters){ res in
             switch res {
             case .success:
                 if let nurseDetail = res.value{
