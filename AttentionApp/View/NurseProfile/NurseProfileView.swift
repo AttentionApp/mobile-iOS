@@ -10,7 +10,6 @@ import Alamofire
 import SwiftUI
 import SwiftyJSON
 import UIKit
-
 struct NurseProfileView: View {
         
     let stringContratar:String = "Contratar"

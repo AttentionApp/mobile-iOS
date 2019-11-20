@@ -34,8 +34,6 @@ struct NurseModel : Identifiable, Codable {
         thumbnail_image = "No URL"
         first_name = "No name"
         last_name = "No last name"
-        
-        
     }
     
 }

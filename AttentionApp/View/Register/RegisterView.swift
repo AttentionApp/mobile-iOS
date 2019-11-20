@@ -47,10 +47,9 @@ struct RegisterView: View {
                 .textFieldStyle(RoundedBorderTextFieldStyle())
             TextField("Email", text: $email)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
-            .textContentType(.oneTimeCode)
-                .keyboardType(.emailAddress)
+                .keyboardType(.emailAddress).autocapitalization(.none)
             SecureField("Password", text: $password)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .textFieldStyle(RoundedBorderTextFieldStyle()).autocapitalization(.none)
             Button(action: {
                 let parameters: Parameters = [
                     "email": self.email,

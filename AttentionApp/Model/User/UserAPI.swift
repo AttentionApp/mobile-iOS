@@ -10,6 +10,7 @@ import Alamofire
 import Foundation
 import SwiftyJSON
 
+
 struct UserAPI{
     
     
@@ -23,7 +24,7 @@ struct UserAPI{
             case let .failure(error):
               completion(.failure(error))
             }
-            
+
         }
     }
     
