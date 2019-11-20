@@ -13,17 +13,18 @@ import SwiftyJSON
 
 struct UserAPI{
     
-    static func data(_ parameters: Parameters?, completion: @escaping (Result<JSON>) -> Void){
-        RequestAPI.call("v1/auth/self", method: .get, parameters: parameters){res in
+    
+    static func data(completion: @escaping (Result<JSON>)-> Void){
+        RequestAPI.get("v1/auth/self", method: .get){res in
             switch res{
-                case .success:
-                    if let json = res.value {
-                        completion(.success(json))
-                      }
-                case let .failure(error):
-                  completion(.failure(error))
+            case .success:
+                if let user = res.value {
+                  completion(.success(user))
+                }
+            case let .failure(error):
+              completion(.failure(error))
             }
-        
+
         }
     }
     

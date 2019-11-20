@@ -9,19 +9,21 @@
 import SwiftUI
 
 struct UserModel : Identifiable, Codable {
-
+    
     let id = UUID()
-    var first_name : String
-    var last_name : String
+    var first_name: String
+    var last_name: String
+    var short_name : String
     var thumbnail_image : String
-    var email : String
+    var email: String
     
     init(){
-        first_name = "No name"
+        short_name = "No name"
         thumbnail_image = "No URL"
-        first_name = "No firts name"
+        first_name = "No name"
         last_name = "No last name"
         email = "No email"
+
     }
     
 }
