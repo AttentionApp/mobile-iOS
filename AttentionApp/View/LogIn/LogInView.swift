@@ -20,6 +20,7 @@ struct LogInView: View {
     @State private var email: String = ""
     @State private var password: String = ""
     @State private var showingAlert = false
+    @State private var AuthenticationError = false
     
     let stringIniciarSesion:String = "Iniciar Sesión"
     let stringRegistrarse:String = "Crear una cuenta"
@@ -30,6 +31,7 @@ struct LogInView: View {
             "password": password,
         ]
     }
+    
     
     
     var body: some View {
@@ -57,6 +59,9 @@ struct LogInView: View {
                                         "email": self.email,
                                         "password": self.password,
                                     ]
+                        if (self.email == "" || self.password == "") {
+                    self.showingAlert=true
+                    return
                         AccountAPI.login(parameters) { res in
                                     switch res {
                                     case .success:
@@ -77,18 +82,24 @@ struct LogInView: View {
                                 .fontWeight(.semibold)
                                 .font(.callout)
                         }
+                       .alert(isPresented: $showingAlert) {
+                    Alert(title: Text("Error"), message: Text("Email o contraseña inválidos"), dismissButton: .default(Text("Ok")))
+                }
+                  
                         .frame(minWidth: 0, maxWidth: .infinity)
                         .padding()
                         .foregroundColor(.black)
                         .background(Color.blue)
                         .cornerRadius(40)
                     }.padding(20)
+
                 }
 //                
 //               .sheet(isPresented: $showLogin, content:{
 //                       HomeView().environmentObject(self.globalState)
 //               })
                 
+
                 Button(action: {
                     self.showModal = true
                 }) {
@@ -104,6 +115,7 @@ struct LogInView: View {
                     .background(Color.white)
                     .padding()
                    .overlay(
+
                     RoundedRectangle(cornerRadius: 40)
                         .stroke(Color.blue, lineWidth: 8)
                      .cornerRadius(40))
@@ -115,9 +127,14 @@ struct LogInView: View {
                 })
                
                 
+
+        
+        
+
             }
         .padding(48)
     }
+
         
     }
 }

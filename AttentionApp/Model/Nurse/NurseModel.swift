@@ -2,9 +2,11 @@
 //  NurseModel.swift
 //  AttentionApp
 //
+
+  
+
 //  Created by JEAN PIERRE HUAPAYA CHAVEZ on 11/10/19.
-//  Copyright © 2019 Ricardo Guevara. All rights reserved.
-//
+
 
 import SwiftUI
 
@@ -39,4 +41,5 @@ struct NurseModel : Identifiable, Codable {
 
     }
     
+
 }

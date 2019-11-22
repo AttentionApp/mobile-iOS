@@ -22,6 +22,7 @@
 		6D1F8101236FF87400902844 /* GlobalState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1F8100236FF87400902844 /* GlobalState.swift */; };
 		6D2CF68A2375039500C44788 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2CF6892375039500C44788 /* RegisterView.swift */; };
 
+
 		7C0EF00D237E334B009B5592 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0EF00C237E334B009B5592 /* UserModel.swift */; };
 		7C0EF01D2380ABF8009B5592 /* ReservationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0EF01C2380ABF8009B5592 /* ReservationsView.swift */; };
 		7C0EF0202380AC73009B5592 /* ReservationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0EF01F2380AC73009B5592 /* ReservationModel.swift */; };
@@ -37,6 +38,7 @@
 		7C2534F6237A2CD0009D41DF /* NurseListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2534F5237A2CD0009D41DF /* NurseListView.swift */; };
 		7CC0140D237B4D9500C02CC7 /* ContractNurse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC0140C237B4D9500C02CC7 /* ContractNurse.swift */; };
 		7CC01416237B92BD00C02CC7 /* UserAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC01415237B92BD00C02CC7 /* UserAPI.swift */; };
+
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +57,7 @@
 		6D1F8100236FF87400902844 /* GlobalState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalState.swift; sourceTree = "<group>"; };
 		6D2CF6892375039500C44788 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 
+
 		7C0EF00C237E334B009B5592 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		7C0EF01C2380ABF8009B5592 /* ReservationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationsView.swift; sourceTree = "<group>"; };
 		7C0EF01F2380AC73009B5592 /* ReservationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationModel.swift; sourceTree = "<group>"; };
@@ -70,6 +73,7 @@
 		7C2534F5237A2CD0009D41DF /* NurseListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NurseListView.swift; sourceTree = "<group>"; };
 		7CC0140C237B4D9500C02CC7 /* ContractNurse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContractNurse.swift; sourceTree = "<group>"; };
 		7CC01415237B92BD00C02CC7 /* UserAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAPI.swift; sourceTree = "<group>"; };
+
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +149,7 @@
 		6D1F80F4236FF02900902844 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+
 				7C0EF01E2380AC5D009B5592 /* Reservation */,
 				7CC01414237B915800C02CC7 /* User */,
 				7C2534D62377F0EA009D41DF /* Nurse */,
@@ -187,6 +192,7 @@
 			path = Register;
 			sourceTree = "<group>";
 		};
+
 		7C0EF01B2380ABAF009B5592 /* Reservations */ = {
 			isa = PBXGroup;
 			children = (
@@ -211,10 +217,12 @@
 				7C2534DB2378E466009D41DF /* NurseModel.swift */,
 				7C2534EB237923A6009D41DF /* NurseList.swift */,
 				7C2534ED237924B3009D41DF /* NurseDetail.swift */,
+
 			);
 			path = Nurse;
 			sourceTree = "<group>";
 		};
+
 		7C2534DD2378F04A009D41DF /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -272,6 +280,7 @@
 			path = User;
 			sourceTree = "<group>";
 		};
+
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -354,11 +363,14 @@
 				7C2534F6237A2CD0009D41DF /* NurseListView.swift in Sources */,
 				6D2CF68A2375039500C44788 /* RegisterView.swift in Sources */,
 				6D1F80FD236FF67300902844 /* AccountAPI.swift in Sources */,
+
+
 				7CC01416237B92BD00C02CC7 /* UserAPI.swift in Sources */,
 				7C2534DF2378F060009D41DF /* HomeView.swift in Sources */,
 				7C2534EC237923A6009D41DF /* NurseList.swift in Sources */,
 				7C2534EA2378F6F5009D41DF /* NurseProfileView.swift in Sources */,
 				7C2534DA2377F11C009D41DF /* NurseAPI.swift in Sources */,
+
 				6D1F80DC236FE6F400902844 /* AttentionApp.xcdatamodeld in Sources */,
 				6D1F80FF236FF72300902844 /* AccountModel.swift in Sources */,
 				7C2534EE237924B3009D41DF /* NurseDetail.swift in Sources */,
