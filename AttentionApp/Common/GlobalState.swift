@@ -10,4 +10,5 @@ import SwiftUI
 
 final class GlobalState: ObservableObject {
   @Published var accessToken: String = UserDefaults.standard.string(forKey: "token") ?? ""
+@Published var messageSuccess: String = UserDefaults.standard.string(forKey: "success") ?? ""
 }

@@ -21,6 +21,8 @@
 		6D1F80FF236FF72300902844 /* AccountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1F80FE236FF72300902844 /* AccountModel.swift */; };
 		6D1F8101236FF87400902844 /* GlobalState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1F8100236FF87400902844 /* GlobalState.swift */; };
 		6D2CF68A2375039500C44788 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2CF6892375039500C44788 /* RegisterView.swift */; };
+		6DC2ED78237B94DC0015A2B6 /* NurseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC2ED77237B94DC0015A2B6 /* NurseAPI.swift */; };
+		6DC2ED7A237B954D0015A2B6 /* NurseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC2ED79237B954D0015A2B6 /* NurseModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,8 @@
 		6D1F80FE236FF72300902844 /* AccountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountModel.swift; sourceTree = "<group>"; };
 		6D1F8100236FF87400902844 /* GlobalState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalState.swift; sourceTree = "<group>"; };
 		6D2CF6892375039500C44788 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
+		6DC2ED77237B94DC0015A2B6 /* NurseAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NurseAPI.swift; sourceTree = "<group>"; };
+		6DC2ED79237B954D0015A2B6 /* NurseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NurseModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +110,7 @@
 		6D1F80F4236FF02900902844 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				6DC2ED76237B94A10015A2B6 /* Nurse */,
 				6D1F80FB236FF62700902844 /* Account */,
 			);
 			path = Model;
@@ -143,6 +148,15 @@
 				6D2CF6892375039500C44788 /* RegisterView.swift */,
 			);
 			path = Register;
+			sourceTree = "<group>";
+		};
+		6DC2ED76237B94A10015A2B6 /* Nurse */ = {
+			isa = PBXGroup;
+			children = (
+				6DC2ED77237B94DC0015A2B6 /* NurseAPI.swift */,
+				6DC2ED79237B954D0015A2B6 /* NurseModel.swift */,
+			);
+			path = Nurse;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -226,6 +240,8 @@
 			files = (
 				6D2CF68A2375039500C44788 /* RegisterView.swift in Sources */,
 				6D1F80FD236FF67300902844 /* AccountAPI.swift in Sources */,
+				6DC2ED78237B94DC0015A2B6 /* NurseAPI.swift in Sources */,
+				6DC2ED7A237B954D0015A2B6 /* NurseModel.swift in Sources */,
 				6D1F80DC236FE6F400902844 /* AttentionApp.xcdatamodeld in Sources */,
 				6D1F80FF236FF72300902844 /* AccountModel.swift in Sources */,
 				6D1F80D7236FE6F400902844 /* AppDelegate.swift in Sources */,

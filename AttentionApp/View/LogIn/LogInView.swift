@@ -19,6 +19,7 @@ struct LogInView: View {
     @State private var email: String = ""
     @State private var password: String = ""
     @State private var showingAlert = false
+    @State private var AuthenticationError = false
     
     let stringIniciarSesion:String = "Iniciar Sesión"
     let stringRegistrarse:String = "Crear una cuenta"
@@ -29,6 +30,7 @@ struct LogInView: View {
             "password": password,
         ]
     }
+    
     
     
     var body: some View {
@@ -51,43 +53,63 @@ struct LogInView: View {
             Spacer()
                 .frame(height: 50)
             Button(action: {
+                
+                //                self.showingAlert.toggle()
+                //                self.AuthenticationError.toggle()
+                //                return
                 let parameters: Parameters = [
                     "email": self.email,
                     "password": self.password,
                 ]
-                AccountAPI.login(parameters) { res in
-                    switch res {
-                    case .success:
-                        if let json = res.value, let accessToken = json["token"].string {
-                            self.globalState.accessToken = accessToken
-                            print(accessToken)
-                        }
-                        //                  self.stateReset()
-//                        self.presentation.wrappedValue.dismiss()
-                    case let .failure(error):
-                        self.showingAlert = true
-                        print(error)
+                if (self.email == "" || self.password == "") {
+                    self.showingAlert=true
+                    return
                     
-                    }
                 }
                 
-            }) {
+                AccountAPI.login(parameters) {
+                    res in
+                    switch res {
+                    case .success:
+                        if let json = res.value, let accessToken = json["token"].string, let success = json["success"].string {
+                            self.globalState.accessToken = accessToken
+                            print(accessToken)
+                            self.globalState.messageSuccess = success
+                            print(success)
+                            //self.globalState.accessToken = successMessage
+                            
+                        }
+                        //                  self.stateReset()
+                    //                        self.presentation.wrappedValue.dismiss()
+                    case .failure(let error):
+                        print(error)
+                        self.showingAlert = true
+                        
+                   
+                    }
+                    
+                }
+                
+            }){
                 HStack {
                     
                     Text(stringIniciarSesion)
                         .fontWeight(.semibold)
                         .font(.callout)
                 }
-               
+                .alert(isPresented: $showingAlert) {
+                    Alert(title: Text("Error"), message: Text("Email o contraseña inválidos"), dismissButton: .default(Text("Ok")))
+                }
+                    
                 .frame(minWidth: 0, maxWidth: .infinity)
                 .padding()
                 .foregroundColor(.black)
                 .background(Color.blue)
                 .cornerRadius(40)
             }.padding(20)
-            .alert(isPresented: $showingAlert) {
-                                Alert(title: Text("Error"), message: Text("Email o contraseña inválidos"), dismissButton: .default(Text("Ok")))
-                           }
+            
+            
+            
             
             
             Button(action: {
@@ -111,14 +133,14 @@ struct LogInView: View {
                 
                 
             }.padding()
-            
-            
+                
+                .sheet(isPresented: $showModal, content: {
+                    RegisterView().environmentObject(self.globalState)
+                })
             
         }
         .padding(48)
-        .sheet(isPresented: $showModal, content: {
-            RegisterView().environmentObject(self.globalState)
-        })
+        
         
         
         
