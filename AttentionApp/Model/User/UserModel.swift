@@ -25,7 +25,7 @@ struct UserModel : Identifiable, Codable {
         first_name = "No name"
         last_name = "No last name"
         email = "No email"
-        
+
     }
     
 }

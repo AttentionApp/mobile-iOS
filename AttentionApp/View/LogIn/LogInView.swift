@@ -19,6 +19,7 @@ struct LogInView: View {
     @State private var showModal = false
     @State private var email: String = ""
     @State private var password: String = ""
+    @State private var showingAlert = false
     
     @State private var showingAlert = false
     
@@ -45,8 +46,7 @@ struct LogInView: View {
                 Text("Por favor, ingrese su email y contraseña")
                     .font(.subheadline)
                 Spacer()
-                    .frame(height: 50)
-                
+                    .frame(height: 50)               
                 TextField("Email", text: $email)
                     .textFieldStyle(RoundedBorderTextFieldStyle()).keyboardType(.emailAddress).autocapitalization(.none)
                 SecureField("Password", text: $password)

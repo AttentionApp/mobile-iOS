@@ -15,6 +15,7 @@ struct UserProfileView: View {
     @EnvironmentObject private var globalState: GlobalState
     
     @State var userModel: UserModel?
+
     
     var body: some View {
           VStack(alignment: .center) {
