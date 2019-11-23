@@ -21,11 +21,29 @@ struct NurseProfileView: View {
     
     var nurseModel: NurseModel
     
+    @State var userModel: UserModel
+    
+    
+    var btnBack : some View { Button(action: {
+        self.presentation.wrappedValue.dismiss()
+        }) {
+            HStack {
+            Image(systemName: "arrow.left")
+                .aspectRatio(contentMode: .fit)
+                Text("Go back")
+            }
+        }
+    }
+    
     var body: some View {
-        NavigationView {
-          VStack(alignment: .center) {
-            HStack(alignment: .top) {
-              Image("enfermera")
+        VStack{
+            HStack(alignment: .top){
+                Text(nurseModel.short_name).bold().font(.system(size: 30))
+            }
+            Spacer().frame(height: 50)
+            HStack {
+                ImageView(withURL: nurseModel.thumbnail_image)
+                .frame(width: 230, height: 200)
             }
             HStack {
               Text("Nombre: ").bold()
@@ -35,10 +53,17 @@ struct NurseProfileView: View {
               Text("Apellido: ").bold()
               Text("\(nurseModel.last_name)")
             }
-            Spacer()
+            HStack(alignment: .center) {
+                Text("Descripción: ").bold()
+                Text("\(nurseModel.description)")
+            }
+            Spacer().frame(height: 50)
             
-            NavigationLink(destination: ContractNurse(), isActive: $showView){
-                Button(action: {self.showView = true}) {
+            NavigationLink(destination: ContractNurse(nurseModel: nurseModel, userModel: userModel), isActive: $showView){
+                Button(action: {
+                    self.showView = true
+                    print(self.userModel)
+                }) {
                     Text(stringContratar)
                 }
                 .scaledToFill()
@@ -48,15 +73,15 @@ struct NurseProfileView: View {
                 .foregroundColor(Color.white)
                 .cornerRadius(10)
             }
-            
-          }
-          .navigationBarTitle("Perfil de \(nurseModel.short_name)")
         }
+        .navigationBarTitle(Text("Perfil de \(nurseModel.short_name)"), displayMode: .inline)
+        .navigationBarBackButtonHidden(true)
+        .navigationBarItems(leading: btnBack)
     }
 }
 struct NurseProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        NurseProfileView(nurseModel: NurseModel())
+        NurseProfileView(nurseModel: NurseModel(),userModel: UserModel())
     }
 }
 

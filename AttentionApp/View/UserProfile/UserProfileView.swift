@@ -17,10 +17,12 @@ struct UserProfileView: View {
     @State var userModel: UserModel?
     
     var body: some View {
-        NavigationView {
           VStack(alignment: .center) {
-            HStack(alignment: .top) {
-              Image("enfermera")
+            Text("Mi perfil").bold().font(.system(size: 30))
+            Spacer().frame(height: 50)
+            HStack() {
+                Image("enfermera")
+                .frame(width: 230, height: 200)
             }
             HStack {
               Text("Nombre: ").bold()
@@ -36,26 +38,26 @@ struct UserProfileView: View {
             }
             Spacer()
           }
-          .navigationBarTitle("Acerca de ")
-        }.onAppear(){
-            
-            self.userModel = UserModel()
-            
-            UserAPI.data(){ res in
-                switch res {
-                    case .success:
-                        if let json = res.value{
-                            let datos = json["data"]
-                            self.userModel?.first_name = datos["first_name"].string ?? "No firts name"
-                            self.userModel?.last_name = datos["last_name"].string ?? "No last name"
-                            self.userModel?.email = datos["email"].string ?? "No email"
-                        }
-                        case let .failure(error):
-                              print(error)
-                }
-            }
-        }
+//          .onAppear(){
+//            self.userModel = UserModel()
+//            
+//            UserAPI.data(){ res in
+//                switch res {
+//                    case .success:
+//                        if let json = res.value{
+//                            let datos = json["data"]
+//                            self.userModel?.idcustomer = datos["idcustomer"].int ?? 0
+//                            self.userModel?.first_name = datos["first_name"].string ?? "No firts name"
+//                            self.userModel?.last_name = datos["last_name"].string ?? "No last name"
+//                            self.userModel?.email = datos["email"].string ?? "No email"
+//                        }
+//                        case let .failure(error):
+//                              print(error)
+//                }
+//            }
+//        }
     }
+    
 }
 
 struct UserProfileView_Previews: PreviewProvider {

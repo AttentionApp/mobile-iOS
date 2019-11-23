@@ -12,8 +12,8 @@ import SwiftyJSON
 
 struct ReservationAPI{
  
-    static func call(completion: @escaping (Result<JSON>)-> Void){
-        RequestAPI.get("v1/reservations", method: .get){res in
+    static func call(idReservation:Int,completion: @escaping (Result<JSON>)-> Void){
+        RequestAPI.get("v1/customers/\(idReservation)/reservations", method: .get){res in
             switch res{
             case .success:
                 if let reservation = res.value {
@@ -23,6 +23,19 @@ struct ReservationAPI{
               completion(.failure(error))
             }
             
+        }
+    }
+    
+    static func register(_ parameters: Parameters?, completion: @escaping (Result<JSON>) -> Void){
+        RequestAPI.call("v1/reservations/", method: .post, parameters: parameters){res in 
+            switch res{
+            case .success:
+                if let json = res.value{
+                    completion(.success(json))
+                }
+            case let .failure(error):
+                completion(.failure(error))
+            }
         }
     }
     

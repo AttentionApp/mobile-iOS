@@ -46,9 +46,8 @@ struct RegisterView: View {
             TextField("Apellidos", text: $lastName)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
             TextField("Email", text: $email)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-            .textContentType(.oneTimeCode)
-                .keyboardType(.emailAddress)
+            .textFieldStyle(RoundedBorderTextFieldStyle())
+            .keyboardType(.emailAddress).autocapitalization(.none)
             SecureField("Password", text: $password)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
             Button(action: {

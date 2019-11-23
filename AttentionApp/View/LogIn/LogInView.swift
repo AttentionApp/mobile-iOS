@@ -20,6 +20,8 @@ struct LogInView: View {
     @State private var email: String = ""
     @State private var password: String = ""
     
+    @State private var showingAlert = false
+    
     let stringIniciarSesion:String = "Iniciar Sesión"
     let stringRegistrarse:String = "Crear una cuenta"
     
@@ -46,9 +48,9 @@ struct LogInView: View {
                     .frame(height: 50)
                 
                 TextField("Email", text: $email)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .textFieldStyle(RoundedBorderTextFieldStyle()).keyboardType(.emailAddress).autocapitalization(.none)
                 SecureField("Password", text: $password)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .textFieldStyle(RoundedBorderTextFieldStyle()).autocapitalization(.none)
                 Spacer()
                     .frame(height: 50)
                 NavigationLink(destination: HomeView().environmentObject(self.globalState), isActive: $showLogin){
@@ -57,13 +59,17 @@ struct LogInView: View {
                                         "email": self.email,
                                         "password": self.password,
                                     ]
+                        if (self.email == "" || self.password == "") {
+                            self.showingAlert=true
+                            return
+                            
+                        }
                         AccountAPI.login(parameters) { res in
                                     switch res {
                                     case .success:
                                       if let json = res.value, let accessToken = json["token"].string {
                                         self.globalState.accessToken = accessToken
                                       }
-                    //                  self.stateReset()
                                       self.presentation.wrappedValue.dismiss()
                                     case let .failure(error):
                                       print(error)
@@ -76,6 +82,9 @@ struct LogInView: View {
                             Text(stringIniciarSesion)
                                 .fontWeight(.semibold)
                                 .font(.callout)
+                        }
+                        .alert(isPresented: $showingAlert) {
+                                Alert(title: Text("Error"), message: Text("Email o contraseña inválidos"), dismissButton: .default(Text("Ok")))
                         }
                         .frame(minWidth: 0, maxWidth: .infinity)
                         .padding()

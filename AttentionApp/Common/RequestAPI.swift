@@ -52,20 +52,4 @@ struct RequestAPI {
 
         }
     }
-    
-//    static func converterImage(){
-//
-//        Alamofire.request("https://www.cuantogana10.com/wp-content/uploads/2015/07/enfermera.jpg").responseImage{ response in
-//            debugPrint(response)
-//
-//            print(response.request)
-//            print(response.response)
-//            debugPrint(response.result)
-//
-//            if let image = response.result.value {
-//                print("image downloaded: \(image)")
-//            }
-//
-//        }
-//    }
 }

@@ -23,53 +23,40 @@ struct NurseListView: View {
     @EnvironmentObject private var globalState: GlobalState
     @Environment(\.presentationMode) private var presentation: Binding<PresentationMode>
     
+    @State var userModel: UserModel?
+    
     @State var nurseList: [NurseModel] = []
-    @State var imageLoader : ImageLoader?
     
+    let stringTitulo = "LISTA DE ENFERMERAS"
+    let stringCloseSession = "Cerrar Sesión"
     
-    class ImageLoader: ObservableObject{
-        
-        @Published var dataIsValid = false
-        var data:Data?
-        
-        init(urlString:String){
-            guard let url = URL(string: urlString) else { return }
-            let task = URLSession.shared.dataTask(with : url){ data, resonse, error in
-                guard let data = data else { return }
-                DispatchQueue.main.async{
-                    self.dataIsValid = true
-                    self.data = data
-                }
-            }
-            task.resume()
-        }
-    }
-
-    func imageFromData(_ data:Data) -> UIImage {
-        UIImage(data: data) ?? UIImage()
-    }
+//    var btnBack : some View { Button(action: {
+//        self.presentation.wrappedValue.dismiss()
+//        }) {
+//            HStack {
+//                Image(systemName: "arrow.left.to.line") // set image here
+//                .aspectRatio(contentMode: .fit)
+//                .foregroundColor(.white)
+//                Text(stringCloseSession)
+//            }
+//        }
+//    }
     
     var body: some View {
-              
-        NavigationView {
+        VStack{
+            Text(stringTitulo).bold().font(.system(size: 30))
+//            Spacer().frame(height: 50)
                 List(self.nurseList){ nurse in
-                    NavigationLink(destination: NurseProfileView(nurseModel: nurse)){
-//                        Profe sigue sin funcionar la imagen
+                    NavigationLink(destination: NurseProfileView(nurseModel: nurse,userModel: (self.userModel)!)){
                         
-                        
-//                        imageLoader = ImageLoader(urlString: nurse.thumbnail_image)
-//                        Image(uiImage: imageLoader.dataIsValid ? imageFromData(imageLoader.data!) : UIImage())
-//                        .resizable()
-//                        .aspectRatio(contentMode: .fit)
-//                        .frame(width:50, height:50)
-                        
-                            Image("ic_nurse_black_24dp")
-                                .resizable()
-                                .frame(width: 50, height: 50)
+                        ImageView(withURL: nurse.thumbnail_image)
+                        .frame(width: 50, height: 50)
+//                            Image("ic_nurse_black_24dp")
+//                                .resizable()
+//                                .frame(width: 50, height: 50)
                             Text(nurse.short_name)
                     }
-                }.navigationBarTitle(Text("Lista de Enfermeras"))
-
+                }
         }
         .onAppear(){
             NurseAPI.viewAll(){res in
@@ -94,21 +81,14 @@ struct NurseListView: View {
                                     if var idNurse = item["idnurse"].int{
                                         nurseModel.idnurse = idNurse
                                     }
+                                    if var description = item["description"].string{
+                                        nurseModel.description = description
+                                    }
                                 }
                                 self.nurseList.append(nurseModel)
-                                
                             }
                         }
-                        //                                        let arrayName = json["rows"].arrayValue.map{
-                        //                                             $0["short_name"].stringValue
-                        //                                        }
-                        //                                        let arrayImageURL = json["rows"].arrayValue.map{
-                        //                                              $0["thumbnail_image"].stringValue
-                        //                                        }
-                        //                                        print(arrayName)
-                        //                                        print(arrayImageURL)
-                        //                                        print(nurses)
-                        //print(nurses)
+                        print(self.userModel)
                     }
                 case let .failure(error):
                     print(error)
@@ -120,6 +100,6 @@ struct NurseListView: View {
 
 struct NurseListView_Previews: PreviewProvider {
     static var previews: some View {
-        NurseListView()
+        NurseListView(userModel: UserModel())
     }
 }

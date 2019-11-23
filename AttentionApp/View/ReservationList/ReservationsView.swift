@@ -11,9 +11,11 @@ import SwiftUI
 struct ReservationsView: View {
     
     @EnvironmentObject private var globalState: GlobalState
-     @Environment(\.presentationMode) private var presentation: Binding<PresentationMode>
+    @Environment(\.presentationMode) private var presentation: Binding<PresentationMode>
     
     @State var reservationList: [ReservationModel] = []
+    
+    @State var userModel: UserModel?
     
     var body: some View {
         
@@ -25,8 +27,7 @@ struct ReservationsView: View {
             }
             .navigationBarTitle(Text("Mis reservas"))
         }.onAppear(){
-            ReservationAPI.call(){ res in
-                
+            ReservationAPI.call(idReservation: self.userModel!.idcustomer){ res in
                 switch res{
                 case .success:
                     if let json = res.value{
@@ -35,7 +36,6 @@ struct ReservationsView: View {
                             for item in datos{
                                 var reservationModel = ReservationModel()
                                 if var startDate = item["start_date"].string{
-                                    
                                     let isoDate = startDate
                                     let common = Date()
                                     let dateFormatter = DateFormatter()
@@ -54,18 +54,30 @@ struct ReservationsView: View {
                         }
                     }
                 case let .failure(error):
-                print(error)
+                    print(error)
                 }
                 
             }
+//            NurseAPI.detailsNurse(){ res in
+//                switch res{
+//                case .success:
+//                    if let json = res.value{
+//                        if let datos = json["rows"].array{
+//  
+//                        }
+//                    }
+//                case let .failure(error):
+//                    print(error)
+//                
+//                }
+//            }
         }
-        
-        
     }
 }
 
 struct ReservationsView_Previews: PreviewProvider {
     static var previews: some View {
-        ReservationsView()
+        ReservationsView(userModel: UserModel())
     }
 }
+

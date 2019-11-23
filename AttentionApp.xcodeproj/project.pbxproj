@@ -33,8 +33,12 @@
 		7C2534EC237923A6009D41DF /* NurseList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2534EB237923A6009D41DF /* NurseList.swift */; };
 		7C2534EE237924B3009D41DF /* NurseDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2534ED237924B3009D41DF /* NurseDetail.swift */; };
 		7C2534F6237A2CD0009D41DF /* NurseListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2534F5237A2CD0009D41DF /* NurseListView.swift */; };
+		7C9EDD972385180B004C5AFF /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9EDD962385180B004C5AFF /* ImageView.swift */; };
+		7C9EDD9923851846004C5AFF /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9EDD9823851846004C5AFF /* ImageLoader.swift */; };
 		7CC0140D237B4D9500C02CC7 /* ContractNurse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC0140C237B4D9500C02CC7 /* ContractNurse.swift */; };
 		7CC01416237B92BD00C02CC7 /* UserAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC01415237B92BD00C02CC7 /* UserAPI.swift */; };
+		7CDB0DF923874C0E00EA4650 /* CardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CDB0DF823874C0E00EA4650 /* CardModel.swift */; };
+		7CDB0DFB23874C7300EA4650 /* CardAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CDB0DFA23874C7300EA4650 /* CardAPI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,8 +68,12 @@
 		7C2534EB237923A6009D41DF /* NurseList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NurseList.swift; sourceTree = "<group>"; };
 		7C2534ED237924B3009D41DF /* NurseDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NurseDetail.swift; sourceTree = "<group>"; };
 		7C2534F5237A2CD0009D41DF /* NurseListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NurseListView.swift; sourceTree = "<group>"; };
+		7C9EDD962385180B004C5AFF /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
+		7C9EDD9823851846004C5AFF /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		7CC0140C237B4D9500C02CC7 /* ContractNurse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContractNurse.swift; sourceTree = "<group>"; };
 		7CC01415237B92BD00C02CC7 /* UserAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAPI.swift; sourceTree = "<group>"; };
+		7CDB0DF823874C0E00EA4650 /* CardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardModel.swift; sourceTree = "<group>"; };
+		7CDB0DFA23874C7300EA4650 /* CardAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardAPI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,7 +134,8 @@
 		6D1F80F3236FF01000902844 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				7C0EF01B2380ABAF009B5592 /* Reservations */,
+				7C9EDD95238517EC004C5AFF /* ImageView */,
+				7C0EF01B2380ABAF009B5592 /* ReservationList */,
 				7CC0140B237B4D6200C02CC7 /* ContractNurse */,
 				7C2534F4237A2CBF009D41DF /* NurseList */,
 				7C2534E82378F6E5009D41DF /* NurseProfile */,
@@ -141,6 +150,7 @@
 		6D1F80F4236FF02900902844 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				7CDB0DF723874C0100EA4650 /* Card */,
 				7C0EF01E2380AC5D009B5592 /* Reservation */,
 				7CC01414237B915800C02CC7 /* User */,
 				7C2534D62377F0EA009D41DF /* Nurse */,
@@ -154,6 +164,7 @@
 			children = (
 				6D1F80F9236FF19300902844 /* RequestAPI.swift */,
 				6D1F8100236FF87400902844 /* GlobalState.swift */,
+				7C9EDD9823851846004C5AFF /* ImageLoader.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -183,12 +194,12 @@
 			path = Register;
 			sourceTree = "<group>";
 		};
-		7C0EF01B2380ABAF009B5592 /* Reservations */ = {
+		7C0EF01B2380ABAF009B5592 /* ReservationList */ = {
 			isa = PBXGroup;
 			children = (
 				7C0EF01C2380ABF8009B5592 /* ReservationsView.swift */,
 			);
-			path = Reservations;
+			path = ReservationList;
 			sourceTree = "<group>";
 		};
 		7C0EF01E2380AC5D009B5592 /* Reservation */ = {
@@ -250,6 +261,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		7C9EDD95238517EC004C5AFF /* ImageView */ = {
+			isa = PBXGroup;
+			children = (
+				7C9EDD962385180B004C5AFF /* ImageView.swift */,
+			);
+			path = ImageView;
+			sourceTree = "<group>";
+		};
 		7CC0140B237B4D6200C02CC7 /* ContractNurse */ = {
 			isa = PBXGroup;
 			children = (
@@ -265,6 +284,15 @@
 				7C0EF00C237E334B009B5592 /* UserModel.swift */,
 			);
 			path = User;
+			sourceTree = "<group>";
+		};
+		7CDB0DF723874C0100EA4650 /* Card */ = {
+			isa = PBXGroup;
+			children = (
+				7CDB0DF823874C0E00EA4650 /* CardModel.swift */,
+				7CDB0DFA23874C7300EA4650 /* CardAPI.swift */,
+			);
+			path = Card;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -346,10 +374,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7C9EDD972385180B004C5AFF /* ImageView.swift in Sources */,
 				7C2534F6237A2CD0009D41DF /* NurseListView.swift in Sources */,
+				7CDB0DFB23874C7300EA4650 /* CardAPI.swift in Sources */,
 				6D2CF68A2375039500C44788 /* RegisterView.swift in Sources */,
 				6D1F80FD236FF67300902844 /* AccountAPI.swift in Sources */,
 				7CC01416237B92BD00C02CC7 /* UserAPI.swift in Sources */,
+				7CDB0DF923874C0E00EA4650 /* CardModel.swift in Sources */,
 				7C2534DF2378F060009D41DF /* HomeView.swift in Sources */,
 				7C2534EC237923A6009D41DF /* NurseList.swift in Sources */,
 				7C2534EA2378F6F5009D41DF /* NurseProfileView.swift in Sources */,
@@ -362,6 +393,7 @@
 				7C2534E52378F66E009D41DF /* UserProfileView.swift in Sources */,
 				7C0EF0202380AC73009B5592 /* ReservationModel.swift in Sources */,
 				7CC0140D237B4D9500C02CC7 /* ContractNurse.swift in Sources */,
+				7C9EDD9923851846004C5AFF /* ImageLoader.swift in Sources */,
 				6D1F80FA236FF19300902844 /* RequestAPI.swift in Sources */,
 				7C2534DC2378E466009D41DF /* NurseModel.swift in Sources */,
 				6D1F8101236FF87400902844 /* GlobalState.swift in Sources */,

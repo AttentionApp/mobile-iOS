@@ -20,7 +20,7 @@ struct NurseModel : Identifiable, Codable {
 //    let qualification : String
     var thumbnail_image : String
 //    let comment : String
-//    let description : String
+    var description : String
 //    let active : Bool
 //    let created_by : String
 //    let create_date : Date
@@ -35,6 +35,7 @@ struct NurseModel : Identifiable, Codable {
         thumbnail_image = "No URL"
         first_name = "No name"
         last_name = "No last name"
+        description = "No description"
         idnurse = 0
     }
     
